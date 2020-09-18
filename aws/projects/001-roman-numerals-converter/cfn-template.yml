@@ -18,11 +18,11 @@ Resources:
         Fn::Base64:
           !Sub |
           #! /bin/bash
-          yum update -y
-          yum install httpd -y
+          sudo yum update -y
+          sudo yum install httpd -y
           cd /var/www/html/ 
-          systemctl start httpd
-          systemctl enable httpd
-          wget https://raw.githubusercontent.com/SalihGezgin/clarusway-aws-devops-workshop/master/aws/projects/001-roman-numerals-converter/templates/index.html
-          wget https://raw.githubusercontent.com/SalihGezgin/clarusway-aws-devops-workshop/master/aws/projects/001-roman-numerals-converter/templates/result.html
+          sudo systemctl start httpd
+          sudo systemctl enable httpd
+          wget https://raw.githubusercontent.com/SalihGezgin/meinarbeitsbereich/master/aws/projects/001-roman-numerals-converter/templates/index.html
+          wget https://raw.githubusercontent.com/SalihGezgin/meinarbeitsbereich/master/aws/projects/001-roman-numerals-converter/templates/result.html
       
