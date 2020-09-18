@@ -1,33 +1,35 @@
-from flask import Flask, render_template, request
-​
-converter_app = Flask(__name__)
-​
-@converter_app.route("/", methods = ["GET", "POST"])
+from flask import Flask, url_for, render_template, request
+
+app = Flask(__name__)
+
+def romenconvert(num):
+    num_map = [(1000, 'M'), (900, 'CM'), (500, 'D'), (400, 'CD'), (100, 'C'), (90, 'XC'),
+           (50, 'L'), (40, 'XL'), (10, 'X'), (9, 'IX'), (5, 'V'), (4, 'IV'), (1, 'I')]
+
+    num=int(num)
+    if num>4000 or num<1:
+        return ("Not Valid Input !!!")
+    else :
+        roman = ''
+        while num > 0:
+            for i, r in num_map:
+                while num >= i:
+                    roman += r
+                    num -= i
+        return roman
+
+
+@app.route("/", methods = ["POST","GET"])
 def index():
-    if request.method == 'POST':    
-        user_input = request.form["number"]
-        if user_input.isalpha() or user_input == "0":
-            return render_template("index.html", developer_name = "Salih Gezgin", not_valid= True)
-        else:
-            user_input = int(user_input)
-        if user_input >= 4000 or user_input < 1 :
-            return render_template("index.html", developer_name = "Salih Gezgin", not_valid= True)
-        else:
-            val = [1000, 900, 500, 400, 100, 90, 50, 40, 10, 9, 5, 4, 1]
-            syb = ["M", "CM", "D", "CD","C", "XC", "L", "XL","X", "IX", "V", "IV", "I"]
-            number_roman = ''
-            number_decimal = user_input
-            i = 0
-            while  user_input > 0:
-	            for j in range(user_input // val[i]):
-	                number_roman += syb[i]
-	                user_input -= val[i]
-	            i += 1
-            return render_template("result.html", developer_name = "Salih Gezgin", number_decimal = number_decimal, number_roman=number_roman)
+    developer_name = "Salih Gezgin"
+    if request.method == "POST":
+        number_decimal = request.form.get("number")
+        number_roman = romenconvert(number_decimal)
+        return render_template("result.html", number_decimal = number_decimal, number_roman =number_roman, developer_name =developer_name)
     else:
-        return render_template("index.html", developer_name = "Salih Gezgin")
-        
-​
-if __name__ == '__main__':
-    #converter_app.run(debug = True)
-    converter_app.run(host='0.0.0.0', port=80)
+        return render_template("index.html", developer_name = developer_name)
+        #  Achtung!!!
+
+
+if __name__ == "__main__":
+    app.run(host="0.0.0.0", port=80)
