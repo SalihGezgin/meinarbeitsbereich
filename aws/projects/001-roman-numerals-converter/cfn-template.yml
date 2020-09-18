@@ -23,6 +23,6 @@ Resources:
           cd /var/www/html/ 
           sudo systemctl start httpd
           sudo systemctl enable httpd
-          wget https://raw.githubusercontent.com/SalihGezgin/meinarbeitsbereich/master/aws/projects/001-roman-numerals-converter/templates/index.html
-          wget https://raw.githubusercontent.com/SalihGezgin/meinarbeitsbereich/master/aws/projects/001-roman-numerals-converter/templates/result.html
-      
+          sudo wget https://raw.githubusercontent.com/SalihGezgin/meinarbeitsbereich/master/aws/projects/001-roman-numerals-converter/templates/index.html
+          sudo wget https://raw.githubusercontent.com/SalihGezgin/meinarbeitsbereich/master/aws/projects/001-roman-numerals-converter/templates/result.html
+          sudo wget https://raw.githubusercontent.com/SalihGezgin/meinarbeitsbereich/master/aws/projects/001-roman-numerals-converter/converter_app.py
