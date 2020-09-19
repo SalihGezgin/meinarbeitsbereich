@@ -18,7 +18,7 @@ def Conventer_Roman(number_decimal):
     i = 0
         
     while  number_decimal > 0 and number_decimal < 4000:
-        for _ in range(number_decimal // val[i]):
+        for i in range(number_decimal // val[i]):
             number_roman += syb[i]
             number_decimal -= val[i]
         i += 1
