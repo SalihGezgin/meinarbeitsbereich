@@ -25,7 +25,6 @@ def index():
 
 @app.route("/result", methods = ["POST","GET"])
 def result():
-    developer_name = "2405 Salih Gezgin"
     if request.method == "POST":
         number_decimal = request.form.get("number_decimal")
         return render_template("result.html", number_decimal = number_decimal, number_roman = romanconvert(int(number_decimal)), developer_name =developer_name)

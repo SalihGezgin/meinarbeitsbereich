@@ -49,6 +49,9 @@
 
     <p class="footnote"><i>This app is developed in Python by <b>{{ developer_name }}</b> and deployed with Flask on AWS
             EC2 Instance using AWS Clouldformation Service.</i></p>
+    {% else %}
+    <p>Hesaplama Yapilamadi!</p>
+    {% endif %}
 </body>
 
 </html>
