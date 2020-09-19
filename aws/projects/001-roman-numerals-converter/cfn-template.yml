@@ -42,9 +42,9 @@ Resources:
     Properties:
       ImageId: ami-0c94855ba95c71c99
       InstanceType: t2.micro
-      KeyName: aws_key
+      KeyName: ilkcihaz
       SecurityGroupIds:
-        - !Ref WebServerSecGrp
+        - !Ref HTTPandSSH
       Tags:
         -
           Key: Name
@@ -58,9 +58,9 @@ Resources:
             yum install python3 -y
             DATE_TIME=`date`
             cd /var/www/html
-            wget https://raw.githubusercontent.com/Gokay2705/Clarusway.AWS.Work.Shop/master/aws/projects/001-roman-numerals-converter/templates/index.html
-            wget https://raw.githubusercontent.com/Gokay2705/Clarusway.AWS.Work.Shop/master/aws/projects/001-roman-numerals-converter/templates/result.html
-            wget https://raw.githubusercontent.com/Gokay2705/Clarusway.AWS.Work.Shop/master/aws/projects/001-roman-numerals-converter/app_proje_001.py
+            wget https://raw.githubusercontent.com/SalihGezgin/meinarbeitsbereich/master/aws/projects/001-roman-numerals-converter/templates/index.html
+            wget https://raw.githubusercontent.com/SalihGezgin/meinarbeitsbereich/master/aws/projects/001-roman-numerals-converter/templates/result.html
+            wget https://raw.githubusercontent.com/SalihGezgin/meinarbeitsbereich/master/aws/projects/001-roman-numerals-converter/converter_app.py
             systemctl start httpd
             systemctl enable httpd 
 
