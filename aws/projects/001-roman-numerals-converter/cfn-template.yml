@@ -44,7 +44,7 @@ Resources:
       InstanceType: t2.micro
       KeyName: ilkcihaz
       SecurityGroupIds:
-        - !Ref HTTPandSSH
+        - !Ref WebServerSecGrp
       Tags:
         -
           Key: Name
