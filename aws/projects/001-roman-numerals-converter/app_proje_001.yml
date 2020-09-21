@@ -23,7 +23,6 @@ Description: |
   - C can be placed before D (500) and M (1000) to make 400 and 900.
   
 Resources:
-Resources:
   WebServerSecGrp:
     Type: "AWS::EC2::SecurityGroup"
     Properties:
