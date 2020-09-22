@@ -1,76 +1,79 @@
 AWSTemplateFormatVersion: 2010-09-09
-
 Description: |
-  Roman numerals are represented by seven different symbols: I, V, X, L, C, D and M.
-  - Symbol       Value
-  - I             1
-  - V             5
-  - X             10
-  - L             50
-  - C             100
-  - D             500
-  - M             1000
-  - For example, two is written as II in Roman numeral, just two one's added together. 
-  Twelve is written as, XII, which is simply X + II. 
-  The number twenty seven is written as XXVII, which is XX + V + II.
-  - Roman numerals are usually written largest to smallest from left to right. 
-  However, the numeral for four is not IIII. Instead, the number four is written as IV. 
-  Because the one is before the five we subtract it making four. 
-  The same principle applies to the number nine, which is written as IX. 
-  There are six instances where subtraction is used:
-  - I can be placed before V (5) and X (10) to make 4 and 9. 
-  - X can be placed before L (50) and C (100) to make 40 and 90. 
-  - C can be placed before D (500) and M (1000) to make 400 and 900.
+  This template creates an EC2 instance to run dynamic web site with Flask Web Frame
   
+Parameters: # completed
+  VpcId:
+    Description: VpcId of my existing Virtual Private Cloud(VPC)
+    Type: AWS::EC2::VPC::Id
+  InstanceType:
+    Description: Web Server EC2 Instance Type
+    Type: String
+    Default: t2.micro
+    AllowedValues:
+        - t2.micro
+        - t1.micro
+        - m1.small
+        - m1.medium
+        - m1.large
+    ConstraintDescription: must be a valid EC2 instance type
+  KeyName:
+    Description: The EC2 Key Pair alloe SSH access to the instance
+    Type: AWS::EC2::KeyPair::KeyName
+Mappings:
+  RegionImageMap:
+    us-east-1:
+      AMI: ami-0c94855ba95c71c99
+    us-east-2:
+      AMI: ami-0603cbe34fd08cb81
+    us-west-1:
+      AMI: ami-0e65ed16c9bf1abc7
+    us-west-2:
+      AMI: ami-0841edc20334f9287
+    eu-west-1:
+      AMI: ami-08a2aed6e0a6f9c7d  
 Resources:
-Resources:
-  WebServerSecGrp:
+  MyEC2Instance:
+    Type: "AWS::EC2::Instance"
+    Properties:
+      ImageId: !FindInMap 
+        - RegionImageMap
+        - !Ref AWS::Region
+        - AMI 
+      InstanceType: !Ref InstanceType
+      KeyName: !Ref KeyName
+      SecurityGroups:
+        - !Ref MySecurityGroup
+      Tags:
+        - Key: Name
+          Value: Flask Web Server Roman Numerals Converter
+      UserData: 
+        Fn::Base64:
+          !Sub |
+          #! /bin/bash
+          yum update -y
+          yum install python3 -y
+          pip3 install flask
+          wget https://raw.githubusercontent.com/Musti4096/aws_devops_workshop/master/aws/projects/001-roman-numerals-converter/app.py
+          mkdir templates
+          cd templates
+          wget https://raw.githubusercontent.com/Musti4096/aws_devops_workshop/master/aws/projects/001-roman-numerals-converter/templates/index.html
+          wget https://raw.githubusercontent.com/Musti4096/aws_devops_workshop/master/aws/projects/001-roman-numerals-converter/templates/result.html
+          cd ..
+          python3 app.py
+
+  MySecurityGroup: #completed
     Type: "AWS::EC2::SecurityGroup"
     Properties:
-      GroupDescription: Enable HTTP for Apache Server and SSH for terminal.
+      GroupDescription: Enable HTTP and SSH connection from anywhere #required
       SecurityGroupIngress:
-        - IpProtocol: tcp
-          FromPort: 80
-          ToPort: 80
-          CidrIp: 0.0.0.0/0
         - IpProtocol: tcp
           FromPort: 22
           ToPort: 22
           CidrIp: 0.0.0.0/0
-  WebServerHost:
-    Type: "AWS::EC2::Instance"
-    Properties:
-      ImageId: ami-0c94855ba95c71c99
-      InstanceType: t2.micro
-      KeyName: ilkcihaz
-      SecurityGroupIds:
-        - !Ref WebServerSecGrp
-      Tags:
-        -
-          Key: Name
-          Value: !Sub Web Server of ${AWS::StackName} Stack
-      UserData:
-        Fn::Base64:
-          !Sub |
-            #! /bin/bash
-            yum update -y
-            yum install httpd -y
-            yum install python3 -y
-            DATE_TIME=`date`
-            cd /var/www/html
-            wget https://raw.githubusercontent.com/Gokay2705/Clarusway.AWS.Work.Shop/master/aws/projects/001-roman-numerals-converter/v2/app_proje_001.v2.py
-            mkdir templates
-            cd templates
-            wget https://raw.githubusercontent.com/Gokay2705/Clarusway.AWS.Work.Shop/master/aws/projects/001-roman-numerals-converter/v2/templates/index.html
-            wget https://raw.githubusercontent.com/Gokay2705/Clarusway.AWS.Work.Shop/master/aws/projects/001-roman-numerals-converter/v2/templates/result.html
-            cd ..
-            python3 app_proje_001.v2.py
-            systemctl start httpd
-            systemctl enable httpd 
-             
-Outputs:
-  WebURL:
-    Value: !Sub 
-      - http://${PublicAddress}
-      - PublicAddress: !GetAtt WebServerHost.PublicDnsName
-    Description: Roman numerals Website URL
+        - IpProtocol: tcp
+          FromPort: 80
+          ToPort: 80
+          CidrIp: 0.0.0.0/0
+
+  
