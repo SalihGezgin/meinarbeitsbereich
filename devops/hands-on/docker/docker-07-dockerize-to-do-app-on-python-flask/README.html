@@ -1,0 +1,713 @@
+<!DOCTYPE html>
+<html>
+<head>
+<title>README.md</title>
+<meta http-equiv="Content-type" content="text/html;charset=UTF-8">
+
+<style>
+/* https://github.com/microsoft/vscode/blob/master/extensions/markdown-language-features/media/markdown.css */
+/*---------------------------------------------------------------------------------------------
+ *  Copyright (c) Microsoft Corporation. All rights reserved.
+ *  Licensed under the MIT License. See License.txt in the project root for license information.
+ *--------------------------------------------------------------------------------------------*/
+
+body {
+	font-family: var(--vscode-markdown-font-family, -apple-system, BlinkMacSystemFont, "Segoe WPC", "Segoe UI", "Ubuntu", "Droid Sans", sans-serif);
+	font-size: var(--vscode-markdown-font-size, 14px);
+	padding: 0 26px;
+	line-height: var(--vscode-markdown-line-height, 22px);
+	word-wrap: break-word;
+}
+
+#code-csp-warning {
+	position: fixed;
+	top: 0;
+	right: 0;
+	color: white;
+	margin: 16px;
+	text-align: center;
+	font-size: 12px;
+	font-family: sans-serif;
+	background-color:#444444;
+	cursor: pointer;
+	padding: 6px;
+	box-shadow: 1px 1px 1px rgba(0,0,0,.25);
+}
+
+#code-csp-warning:hover {
+	text-decoration: none;
+	background-color:#007acc;
+	box-shadow: 2px 2px 2px rgba(0,0,0,.25);
+}
+
+body.scrollBeyondLastLine {
+	margin-bottom: calc(100vh - 22px);
+}
+
+body.showEditorSelection .code-line {
+	position: relative;
+}
+
+body.showEditorSelection .code-active-line:before,
+body.showEditorSelection .code-line:hover:before {
+	content: "";
+	display: block;
+	position: absolute;
+	top: 0;
+	left: -12px;
+	height: 100%;
+}
+
+body.showEditorSelection li.code-active-line:before,
+body.showEditorSelection li.code-line:hover:before {
+	left: -30px;
+}
+
+.vscode-light.showEditorSelection .code-active-line:before {
+	border-left: 3px solid rgba(0, 0, 0, 0.15);
+}
+
+.vscode-light.showEditorSelection .code-line:hover:before {
+	border-left: 3px solid rgba(0, 0, 0, 0.40);
+}
+
+.vscode-light.showEditorSelection .code-line .code-line:hover:before {
+	border-left: none;
+}
+
+.vscode-dark.showEditorSelection .code-active-line:before {
+	border-left: 3px solid rgba(255, 255, 255, 0.4);
+}
+
+.vscode-dark.showEditorSelection .code-line:hover:before {
+	border-left: 3px solid rgba(255, 255, 255, 0.60);
+}
+
+.vscode-dark.showEditorSelection .code-line .code-line:hover:before {
+	border-left: none;
+}
+
+.vscode-high-contrast.showEditorSelection .code-active-line:before {
+	border-left: 3px solid rgba(255, 160, 0, 0.7);
+}
+
+.vscode-high-contrast.showEditorSelection .code-line:hover:before {
+	border-left: 3px solid rgba(255, 160, 0, 1);
+}
+
+.vscode-high-contrast.showEditorSelection .code-line .code-line:hover:before {
+	border-left: none;
+}
+
+img {
+	max-width: 100%;
+	max-height: 100%;
+}
+
+a {
+	text-decoration: none;
+}
+
+a:hover {
+	text-decoration: underline;
+}
+
+a:focus,
+input:focus,
+select:focus,
+textarea:focus {
+	outline: 1px solid -webkit-focus-ring-color;
+	outline-offset: -1px;
+}
+
+hr {
+	border: 0;
+	height: 2px;
+	border-bottom: 2px solid;
+}
+
+h1 {
+	padding-bottom: 0.3em;
+	line-height: 1.2;
+	border-bottom-width: 1px;
+	border-bottom-style: solid;
+}
+
+h1, h2, h3 {
+	font-weight: normal;
+}
+
+table {
+	border-collapse: collapse;
+}
+
+table > thead > tr > th {
+	text-align: left;
+	border-bottom: 1px solid;
+}
+
+table > thead > tr > th,
+table > thead > tr > td,
+table > tbody > tr > th,
+table > tbody > tr > td {
+	padding: 5px 10px;
+}
+
+table > tbody > tr + tr > td {
+	border-top: 1px solid;
+}
+
+blockquote {
+	margin: 0 7px 0 5px;
+	padding: 0 16px 0 10px;
+	border-left-width: 5px;
+	border-left-style: solid;
+}
+
+code {
+	font-family: Menlo, Monaco, Consolas, "Droid Sans Mono", "Courier New", monospace, "Droid Sans Fallback";
+	font-size: 1em;
+	line-height: 1.357em;
+}
+
+body.wordWrap pre {
+	white-space: pre-wrap;
+}
+
+pre:not(.hljs),
+pre.hljs code > div {
+	padding: 16px;
+	border-radius: 3px;
+	overflow: auto;
+}
+
+pre code {
+	color: var(--vscode-editor-foreground);
+	tab-size: 4;
+}
+
+/** Theming */
+
+.vscode-light pre {
+	background-color: rgba(220, 220, 220, 0.4);
+}
+
+.vscode-dark pre {
+	background-color: rgba(10, 10, 10, 0.4);
+}
+
+.vscode-high-contrast pre {
+	background-color: rgb(0, 0, 0);
+}
+
+.vscode-high-contrast h1 {
+	border-color: rgb(0, 0, 0);
+}
+
+.vscode-light table > thead > tr > th {
+	border-color: rgba(0, 0, 0, 0.69);
+}
+
+.vscode-dark table > thead > tr > th {
+	border-color: rgba(255, 255, 255, 0.69);
+}
+
+.vscode-light h1,
+.vscode-light hr,
+.vscode-light table > tbody > tr + tr > td {
+	border-color: rgba(0, 0, 0, 0.18);
+}
+
+.vscode-dark h1,
+.vscode-dark hr,
+.vscode-dark table > tbody > tr + tr > td {
+	border-color: rgba(255, 255, 255, 0.18);
+}
+
+</style>
+
+<style>
+/* Tomorrow Theme */
+/* http://jmblog.github.com/color-themes-for-google-code-highlightjs */
+/* Original theme - https://github.com/chriskempson/tomorrow-theme */
+
+/* Tomorrow Comment */
+.hljs-comment,
+.hljs-quote {
+	color: #8e908c;
+}
+
+/* Tomorrow Red */
+.hljs-variable,
+.hljs-template-variable,
+.hljs-tag,
+.hljs-name,
+.hljs-selector-id,
+.hljs-selector-class,
+.hljs-regexp,
+.hljs-deletion {
+	color: #c82829;
+}
+
+/* Tomorrow Orange */
+.hljs-number,
+.hljs-built_in,
+.hljs-builtin-name,
+.hljs-literal,
+.hljs-type,
+.hljs-params,
+.hljs-meta,
+.hljs-link {
+	color: #f5871f;
+}
+
+/* Tomorrow Yellow */
+.hljs-attribute {
+	color: #eab700;
+}
+
+/* Tomorrow Green */
+.hljs-string,
+.hljs-symbol,
+.hljs-bullet,
+.hljs-addition {
+	color: #718c00;
+}
+
+/* Tomorrow Blue */
+.hljs-title,
+.hljs-section {
+	color: #4271ae;
+}
+
+/* Tomorrow Purple */
+.hljs-keyword,
+.hljs-selector-tag {
+	color: #8959a8;
+}
+
+.hljs {
+	display: block;
+	overflow-x: auto;
+	color: #4d4d4c;
+	padding: 0.5em;
+}
+
+.hljs-emphasis {
+	font-style: italic;
+}
+
+.hljs-strong {
+	font-weight: bold;
+}
+</style>
+
+<style>
+/*
+ * Markdown PDF CSS
+ */
+
+ body {
+	font-family: -apple-system, BlinkMacSystemFont, "Segoe WPC", "Segoe UI", "Ubuntu", "Droid Sans", sans-serif, "Meiryo";
+	padding: 0 12px;
+}
+
+pre {
+	background-color: #f8f8f8;
+	border: 1px solid #cccccc;
+	border-radius: 3px;
+	overflow-x: auto;
+	white-space: pre-wrap;
+	overflow-wrap: break-word;
+}
+
+pre:not(.hljs) {
+	padding: 23px;
+	line-height: 19px;
+}
+
+blockquote {
+	background: rgba(127, 127, 127, 0.1);
+	border-color: rgba(0, 122, 204, 0.5);
+}
+
+.emoji {
+	height: 1.4em;
+}
+
+code {
+	font-size: 14px;
+	line-height: 19px;
+}
+
+/* for inline code */
+:not(pre):not(.hljs) > code {
+	color: #C9AE75; /* Change the old color so it seems less like an error */
+	font-size: inherit;
+}
+
+/* Page Break : use <div class="page"/> to insert page break
+-------------------------------------------------------- */
+.page {
+	page-break-after: always;
+}
+
+</style>
+
+<script src="https://unpkg.com/mermaid/dist/mermaid.min.js"></script>
+</head>
+<body>
+  <script>
+    mermaid.initialize({
+      startOnLoad: true,
+      theme: document.body.classList.contains('vscode-dark') || document.body.classList.contains('vscode-high-contrast')
+          ? 'dark'
+          : 'default'
+    });
+  </script>
+<h1 id="hands-on-docker-07--dockerize-to-do-web-api-developed-in-python-flask">Hands-on Docker-07 : Dockerize To-Do Web API Developed in Python Flask</h1>
+<p>Purpose of the this hands-on training is to dockerize an Python Flask application with Dockerfile and Docker compose.</p>
+<h2 id="learning-outcomes">Learning Outcomes</h2>
+<p>At the end of the this hands-on training, students will be able to;</p>
+<ul>
+<li>
+<p>build a Docker images.</p>
+</li>
+<li>
+<p>configure Docker Compose to run Python Flask app.</p>
+</li>
+</ul>
+<h2 id="outline">Outline</h2>
+<ul>
+<li>
+<p>Part 1 - Launch a Docker Machine Instance and Connect with SSH</p>
+</li>
+<li>
+<p>Part 2 - Configuring Multi Containers (Python Flask App and MySQL) with Docker Compose</p>
+</li>
+</ul>
+<h2 id="part-1---launch-a-docker-machine-instance-and-connect-with-ssh">Part 1 - Launch a Docker Machine Instance and Connect with SSH</h2>
+<ul>
+<li>
+<p>Launch a Compose enabled Docker machine on Amazon Linux 2 AMI with security group allowing SSH connections using the <a href="./docker-compose-installation-cfn-template.yml">Cloudformation Template for Docker Machine Installation</a>.</p>
+</li>
+<li>
+<p>Connect to your instance with SSH.</p>
+</li>
+</ul>
+<pre class="hljs"><code><div>ssh -i .ssh/call-training.pem ec2-user@ec2-3-133-106-98.us-east-2.compute.amazonaws.com
+</div></code></pre>
+<h2 id="part-2---configuring-multi-containers-python-flask-app-and-mysql-with-docker-compose">Part 2 - Configuring Multi Containers (Python Flask App and MySQL) with Docker Compose</h2>
+<ul>
+<li>Create a folder for the project and change into your project directory:</li>
+</ul>
+<pre class="hljs"><code><div>mkdir to-do-api
+<span class="hljs-built_in">cd</span> to-do-api
+</div></code></pre>
+<ul>
+<li>Create a <code>to-do-api.py</code> with following coding.</li>
+</ul>
+<pre class="hljs"><code><div><span class="hljs-comment"># Import Flask modules</span>
+from flask import Flask, jsonify, abort, request, make_response
+from flaskext.mysql import MySQL
+
+<span class="hljs-comment"># Create an object named app</span>
+app = Flask(__name__)
+
+<span class="hljs-comment"># Configure mysql database</span>
+app.config[<span class="hljs-string">'MYSQL_DATABASE_HOST'</span>] = <span class="hljs-string">'database'</span>
+app.config[<span class="hljs-string">'MYSQL_DATABASE_USER'</span>] = <span class="hljs-string">'clarusway'</span>
+app.config[<span class="hljs-string">'MYSQL_DATABASE_PASSWORD'</span>] = <span class="hljs-string">'Clarusway_1'</span>
+app.config[<span class="hljs-string">'MYSQL_DATABASE_DB'</span>] = <span class="hljs-string">'todo_db'</span>
+app.config[<span class="hljs-string">'MYSQL_DATABASE_PORT'</span>] = 3306
+mysql = MySQL()
+mysql.init_app(app)
+connection = mysql.connect()
+connection.autocommit(True)
+cursor = connection.cursor()
+
+<span class="hljs-comment"># Write a function named `init_todo_db` which initializes the todo db</span>
+<span class="hljs-comment"># Create P table within sqlite db and populate with sample data</span>
+<span class="hljs-comment"># Execute the code below only once.</span>
+def init_todo_db():
+    drop_table = <span class="hljs-string">'DROP TABLE IF EXISTS todo_db.todos;'</span>
+    todos_table = <span class="hljs-string">""</span><span class="hljs-string">"
+    CREATE TABLE todo_db.todos(
+    task_id INT NOT NULL AUTO_INCREMENT,
+    title VARCHAR(100) NOT NULL,
+    description VARCHAR(200),
+    is_done BOOLEAN NOT NULL DEFAULT 0,
+    PRIMARY KEY (task_id)
+    ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+    "</span><span class="hljs-string">""</span>
+    data = <span class="hljs-string">""</span><span class="hljs-string">"
+    INSERT INTO todo_db.todos (title, description, is_done)
+    VALUES
+        ("</span>Project 2<span class="hljs-string">", "</span>Work on project 2 with teammates<span class="hljs-string">", 1 ),
+        ("</span>Cloudformation Documentation<span class="hljs-string">", "</span>Study and learn how to <span class="hljs-built_in">read</span> cloudformation docs<span class="hljs-string">", 0),
+        ("</span>Work on CC Phonebook<span class="hljs-string">", "</span>Solve python coding challenge about phonebook app<span class="hljs-string">", 0);
+    "</span><span class="hljs-string">""</span>
+    cursor.execute(drop_table)
+    cursor.execute(todos_table)
+    cursor.execute(data)
+
+<span class="hljs-comment"># Write a function named `get_all_tasks` which gets all tasks from the todos table in the db,</span>
+<span class="hljs-comment"># and return result as list of dictionary </span>
+<span class="hljs-comment"># `[{'task_id': 1, 'title':'XXXX', 'description': 'XXXXXX', 'is_done': 'Yes' or 'No'} ]`.</span>
+def get_all_tasks():
+    query = <span class="hljs-string">""</span><span class="hljs-string">"
+    SELECT * FROM todos;
+    "</span><span class="hljs-string">""</span>
+    cursor.execute(query)
+    result = cursor.fetchall()
+    tasks =[{<span class="hljs-string">'task_id'</span>:row[0], <span class="hljs-string">'title'</span>:row[1], <span class="hljs-string">'description'</span>:row[2], <span class="hljs-string">'is_done'</span>: bool(row[3])} <span class="hljs-keyword">for</span> row <span class="hljs-keyword">in</span> result]
+    <span class="hljs-built_in">return</span> tasks
+
+<span class="hljs-comment"># Write a function named `find_task` which finds task using task_id from the todos table in the db,</span>
+<span class="hljs-comment"># and return result as list of dictionary </span>
+<span class="hljs-comment"># `{'task_id': 1, 'title':'XXXX', 'description': 'XXXXXX', 'is_done': 'Yes' or 'No'}`.</span>
+def find_task(id):
+    query = f<span class="hljs-string">""</span><span class="hljs-string">"
+    SELECT * FROM todos WHERE task_id={id};
+    "</span><span class="hljs-string">""</span>
+    cursor.execute(query)
+    row = cursor.fetchone()
+    task = None
+    <span class="hljs-keyword">if</span> row is not None:
+        task = {<span class="hljs-string">'task_id'</span>:row[0], <span class="hljs-string">'title'</span>:row[1], <span class="hljs-string">'description'</span>:row[2], <span class="hljs-string">'is_done'</span>: bool(row[3])}
+    <span class="hljs-built_in">return</span> task
+
+<span class="hljs-comment"># Write a function named `insert_task` which inserts task into the todos table in the db,</span>
+<span class="hljs-comment"># and return the newly added task as dictionary </span>
+<span class="hljs-comment"># `{'task_id': 1, 'title':'XXXX', 'description': 'XXXXXX', 'is_done': 'Yes' or 'No'}`.</span>
+def insert_task(title, description):
+    insert = f<span class="hljs-string">""</span><span class="hljs-string">"
+    INSERT INTO todos (title, description)
+    VALUES ('{title}', '{description}');
+    "</span><span class="hljs-string">""</span>
+    cursor.execute(insert)
+
+    query = f<span class="hljs-string">""</span><span class="hljs-string">"
+    SELECT * FROM todos WHERE task_id={cursor.lastrowid};
+    "</span><span class="hljs-string">""</span>
+    cursor.execute(query)
+    row = cursor.fetchone()
+    <span class="hljs-built_in">return</span> {<span class="hljs-string">'task_id'</span>:row[0], <span class="hljs-string">'title'</span>:row[1], <span class="hljs-string">'description'</span>:row[2], <span class="hljs-string">'is_done'</span>: bool(row[3])}
+
+<span class="hljs-comment"># Write a function named `change_task` which updates task into the todos table in the db,</span>
+<span class="hljs-comment"># and return updated added task as dictionary </span>
+<span class="hljs-comment"># `{'task_id': 1, 'title':'XXXX', 'description': 'XXXXXX', 'is_done': 'Yes' or 'No'}`.</span>
+def change_task(task):
+    update = f<span class="hljs-string">""</span><span class="hljs-string">"
+    UPDATE todos
+    SET title='{task['title']}', description = '{task['description']}', is_done = {task['is_done']}
+    WHERE task_id= {task['task_id']};
+    "</span><span class="hljs-string">""</span>
+    cursor.execute(update)
+
+    query = f<span class="hljs-string">""</span><span class="hljs-string">"
+    SELECT * FROM todos WHERE task_id={task['task_id']};
+    "</span><span class="hljs-string">""</span>
+    cursor.execute(query)
+    row = cursor.fetchone()
+    <span class="hljs-built_in">return</span> {<span class="hljs-string">'task_id'</span>:row[0], <span class="hljs-string">'title'</span>:row[1], <span class="hljs-string">'description'</span>:row[2], <span class="hljs-string">'is_done'</span>: bool(row[3])}
+
+<span class="hljs-comment"># Write a function named `remove_task` which removes task from the todos table in the db,</span>
+<span class="hljs-comment"># and returns True if successfully deleted or False.</span>
+def remove_task(task):
+    delete = f<span class="hljs-string">""</span><span class="hljs-string">"
+    DELETE FROM todos
+    WHERE task_id= {task['task_id']};
+    "</span><span class="hljs-string">""</span>
+    cursor.execute(delete)
+
+    query = f<span class="hljs-string">""</span><span class="hljs-string">"
+    SELECT * FROM todos WHERE task_id={task['task_id']};
+    "</span><span class="hljs-string">""</span>
+    cursor.execute(query)
+    row = cursor.fetchone()
+    <span class="hljs-built_in">return</span> True <span class="hljs-keyword">if</span> row is None <span class="hljs-keyword">else</span> False
+
+<span class="hljs-comment"># Write a function named `home` which returns 'Welcome to the Callahan's To-Do API Service',</span>
+<span class="hljs-comment"># and assign to the static route of ('/')</span>
+@app.route(<span class="hljs-string">'/'</span>)
+def home():
+    <span class="hljs-built_in">return</span> <span class="hljs-string">"Welcome to Callahan's To-Do API Service"</span>
+
+
+<span class="hljs-comment"># Write a function named `get_tasks` which returns all tasks in JSON format for `GET`,</span>
+<span class="hljs-comment"># and assign to the static route of ('/todos')</span>
+@app.route(<span class="hljs-string">'/todos'</span>, methods=[<span class="hljs-string">'GET'</span>])
+def get_tasks():
+    <span class="hljs-built_in">return</span> jsonify({<span class="hljs-string">'tasks'</span>:get_all_tasks()})
+
+
+<span class="hljs-comment"># Write a function named `get_tasks` which returns the task with given task_id in JSON format for `GET`,</span>
+<span class="hljs-comment"># and assign to the static route of ('/todos/&lt;int:task_id&gt;')</span>
+@app.route(<span class="hljs-string">'/todos/&lt;int:task_id&gt;'</span>, methods = [<span class="hljs-string">'GET'</span>])
+def get_task(task_id):
+    task = find_task(task_id)
+    <span class="hljs-keyword">if</span> task == None:
+        abort(404)
+    <span class="hljs-built_in">return</span> jsonify({<span class="hljs-string">'task found'</span>: task})
+
+<span class="hljs-comment"># Write a function named `add_task` which adds new task using `POST` methods,</span>
+<span class="hljs-comment"># and assign to the static route of ('/todos')</span>
+@app.route(<span class="hljs-string">'/todos'</span>, methods=[<span class="hljs-string">'POST'</span>])
+def add_task():
+    <span class="hljs-keyword">if</span> not request.json or not <span class="hljs-string">'title'</span> <span class="hljs-keyword">in</span> request.json:
+        abort(400)
+    <span class="hljs-built_in">return</span> jsonify({<span class="hljs-string">'newly added task'</span>:insert_task(request.json[<span class="hljs-string">'title'</span>], request.json.get(<span class="hljs-string">'description'</span>, <span class="hljs-string">''</span>))}), 201
+
+<span class="hljs-comment"># Write a function named `update_task` which updates an existing task using `PUT` method,</span>
+<span class="hljs-comment"># and assign to the static route of ('/todos/&lt;int:task_id&gt;')</span>
+@app.route(<span class="hljs-string">'/todos/&lt;int:task_id&gt;'</span>, methods=[<span class="hljs-string">'PUT'</span>])
+def update_task(task_id):
+    task = find_task(task_id)
+    <span class="hljs-keyword">if</span> task == None:
+        abort(404)
+    <span class="hljs-keyword">if</span> not request.json:
+        abort(400)
+    task[<span class="hljs-string">'title'</span>] = request.json.get(<span class="hljs-string">'title'</span>, task[<span class="hljs-string">'title'</span>])
+    task[<span class="hljs-string">'description'</span>] = request.json.get(<span class="hljs-string">'description'</span>, task[<span class="hljs-string">'description'</span>])
+    task[<span class="hljs-string">'is_done'</span>] = int(request.json.get(<span class="hljs-string">'is_done'</span>, int(task[<span class="hljs-string">'is_done'</span>])))
+    <span class="hljs-built_in">return</span> jsonify({<span class="hljs-string">'updated task'</span>: change_task(task)})
+
+<span class="hljs-comment"># Write a function named `delete_task` which updates an existing task using `DELETE` method,</span>
+<span class="hljs-comment"># and assign to the static route of ('/todos/&lt;int:task_id&gt;')</span>
+@app.route(<span class="hljs-string">'/todos/&lt;int:task_id&gt;'</span>, methods=[<span class="hljs-string">'DELETE'</span>])
+def delete_task(task_id):
+    task = find_task(task_id)
+    <span class="hljs-keyword">if</span> task == None:
+        abort(404)
+    <span class="hljs-built_in">return</span> jsonify({<span class="hljs-string">'result'</span>:remove_task(task)})
+
+<span class="hljs-comment"># Write a function named `not_found` for handling 404 errors which returns 'Not found' in JSON format.</span>
+@app.errorhandler(404)
+def not_found(error):
+    <span class="hljs-built_in">return</span> make_response(jsonify({<span class="hljs-string">'error'</span>: <span class="hljs-string">'Not found'</span>}), 404)
+
+<span class="hljs-comment"># Write a function named `bad_request` for handling 400 errors which returns 'Bad Request' in JSON format.</span>
+@app.errorhandler(400)
+def bad_request(error):
+    <span class="hljs-built_in">return</span> make_response(jsonify({<span class="hljs-string">'error'</span>: <span class="hljs-string">'Bad request'</span>}), 400)
+
+<span class="hljs-comment"># Add a statement to run the Flask application which can be reached from any host on port 80.</span>
+<span class="hljs-keyword">if</span> __name__== <span class="hljs-string">'__main__'</span>:
+    init_todo_db()
+    <span class="hljs-comment"># app.run(debug=True)</span>
+    app.run(host=<span class="hljs-string">'0.0.0.0'</span>, port=80)
+</div></code></pre>
+<ul>
+<li>Create another file called <code>requirements.txt</code> in your project folder, add the followings as package list.</li>
+</ul>
+<pre class="hljs"><code><div>flask
+flask-mysql
+</div></code></pre>
+<ul>
+<li>Create a Dockerfile with followings.</li>
+</ul>
+<pre class="hljs"><code><div>FROM python:alpine
+COPY . /app
+WORKDIR /app
+RUN pip install -r requirements.txt
+EXPOSE 80
+CMD python ./to-do-api.py
+</div></code></pre>
+<ul>
+<li>Create a file called <code>docker-compose.yml</code> in your project folder with following setup.</li>
+</ul>
+<pre class="hljs"><code><div>version: &quot;3.7&quot;
+
+services:
+    database:
+        image: mysql:5.7
+        environment:
+            MYSQL_ROOT_PASSWORD: R1234r
+            MYSQL_DATABASE: todo_db
+            MYSQL_USER: clarusway
+            MYSQL_PASSWORD: Clarusway_1
+        networks:
+            - clarusnet
+    myapp:
+        build: .
+        restart: always
+        depends_on:
+            - database
+        ports:
+            - &quot;80:80&quot;
+        networks:
+            - clarusnet
+
+networks:
+    clarusnet:
+        driver: bridge
+</div></code></pre>
+<ul>
+<li>Compose up your application.</li>
+</ul>
+<pre class="hljs"><code><div>docker-compose up -d
+</div></code></pre>
+<ul>
+<li>List docker containers and show that there are multiple containers.</li>
+</ul>
+<pre class="hljs"><code><div>docker container ls
+</div></code></pre>
+<ul>
+<li>List docker images and explain <code>to-do-api_myapp</code> as image name.</li>
+</ul>
+<pre class="hljs"><code><div>docker image ls
+</div></code></pre>
+<ul>
+<li>List docker networks and explain <code>to-do-api_clarusnet</code>.</li>
+</ul>
+<pre class="hljs"><code><div>docker network ls
+</div></code></pre>
+<ul>
+<li>
+<p>Check if the To-Do App is running by entering <code>http://&lt;ec2-host-name&gt;</code> in a browser.</p>
+</li>
+<li>
+<p>Test the application.</p>
+<ul>
+<li>List all task in  the <code>To Do List</code> API using <code>/todos</code> path and HTTP <code>GET</code> method with <code>curl</code> command.</li>
+</ul>
+<pre class="hljs"><code><div>curl http://&lt;ec2-host-name&gt;/todos
+</div></code></pre>
+<ul>
+<li>Retrieve task with <code>id=3</code> using <code>/todos/3</code> path and HTTP <code>GET</code> method with <code>curl</code> command.</li>
+</ul>
+<pre class="hljs"><code><div>curl http://&lt;ec2-host-name&gt;/todos/3
+</div></code></pre>
+<ul>
+<li>Create new task the <code>To Do List</code> using <code>/todos</code> path and HTTP <code>POST</code> method with <code>curl</code> command.</li>
+</ul>
+<pre class="hljs"><code><div>curl -H <span class="hljs-string">"Content-Type: application/json"</span> -X POST -d <span class="hljs-string">'{"title":"Get some REST", "description":"REST in Peace"}'</span> http://&lt;ec2-host-name&gt;/todos
+</div></code></pre>
+<ul>
+<li>Delete task with <code>id=1</code> using <code>/todos/1</code> path and HTTP <code>DELETE</code> method with <code>curl</code> command.</li>
+</ul>
+<pre class="hljs"><code><div>curl -H <span class="hljs-string">"Content-Type: application/json"</span> -X DELETE http://&lt;ec2-host-name&gt;/todos/1
+</div></code></pre>
+<ul>
+<li>List all task in  the <code>To Do List</code> API using <code>/todos</code> path and HTTP <code>GET</code> method with <code>curl</code> command.</li>
+</ul>
+<pre class="hljs"><code><div>curl http://&lt;ec2-host-name&gt;/todos
+</div></code></pre>
+</li>
+<li>
+<p>Stop and remove containers, networks, images.</p>
+</li>
+</ul>
+<pre class="hljs"><code><div>docker-compose down
+</div></code></pre>
+<ul>
+<li>List docker images, networks, containers. Explain, since we didn't add volume to store data, when the MySQL container is gone, all data in the database will be gone also.</li>
+</ul>
+<pre class="hljs"><code><div>docker image ls
+docker container ls
+docker network ls
+</div></code></pre>
+
+</body>
+</html>
