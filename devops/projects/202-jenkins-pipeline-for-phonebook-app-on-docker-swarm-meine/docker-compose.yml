@@ -1,5 +1,4 @@
 version: "3.7"
-
 services:
   database:
     image: mysql:5.7
@@ -10,14 +9,15 @@ services:
       MYSQL_PASSWORD: Clarusway_1
     volumes:
       - db-data:/var/lib/mysql
-    networks:
-      - clarusnet
+      #- ./init.sql:docker-entrypoint-initdb.d/init.sql
     configs:
       - source: initialdatabase
         target: /docker-entrypoint-initdb.d/init.sql
+    networks:
+      - clarusnet
 
   app-server:
-    image: 046402772087.dkr.ecr.us-east-1.amazonaws.com/clarusway-repo/phonebook-app:latest
+    image: 784306838193.dkr.ecr.us-east-1.amazonaws.com/clarusway-repo/phonebook-app:latest 
     deploy:
       mode: global
       update_config:
@@ -28,14 +28,11 @@ services:
       - "80:80"
     networks:
       - clarusnet
-
 networks:
   clarusnet:
     driver: overlay
-
 volumes:
   db-data:
-
 configs:
   initialdatabase:
-      file: ./init.sql
+    file: ./init.sql
