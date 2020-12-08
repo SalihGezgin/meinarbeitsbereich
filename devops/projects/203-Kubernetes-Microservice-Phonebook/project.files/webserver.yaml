@@ -18,32 +18,27 @@ spec:
           name: web-server
           ports: 
             - containerPort: 80
+          EnvFrom:
+            - configMapRef:
+                name: configfile 
           env:
             - name: MYSQL_ROOT_PASSWORD
               valueFrom:
                 secretKeyRef:
                   name: mysecret
                   key: rootpassword
-            - name: MYSQL_DATABASE
-              valueFrom:
-                configMapKeyRef:
-                  name: configfile
-                  key: MYSQL_DATABASE
-            - name: MYSQL_DATABASE_HOST
-              valueFrom:
-                configMapKeyRef:
-                  name: configfile
-                  key: MYSQL_DATABASE_HOST
             - name: MYSQL_USER
               valueFrom:
                 secretKeyRef:
                   name: mysecret
-                  key: username
+                  key: username 
             - name: MYSQL_PASSWORD
               valueFrom:
                 secretKeyRef:
                   name: mysecret
                   key: password
+            - name: MYSQL_DATABASE
+              value: phonebook
 ---
 apiVersion: v1
 kind: Service
