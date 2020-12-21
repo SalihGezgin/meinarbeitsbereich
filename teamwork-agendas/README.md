@@ -22,3 +22,13 @@ List of teamwork agendas for AWS & DevOps learning path as follows;
 - [Teamwork Agenda - 009 : AWS EC2, CF, E.Beanstalk, Docker, GIT](./eu-tw-009-student.pdf)
 
 - [Teamwork Agenda - 010 : AWS EC2, CF, Docker, SWARM, GIT](./eu-tw-010-student.pdf)
+
+- [Teamwork Agenda - 011 : AWS EC2, CF, Jenkins, Docker, SWARM, GIT](./eu-tw-011-student.pdf)
+
+- [Teamwork Agenda - 012 : AWS EC2, CF, Jenkins, Docker, Kubernetes, GIT](./eu-tw-012-student.pdf)
+
+- [Teamwork Agenda - 013 : AWS EC2, CF, Jenkins, Docker, Kubernetes, GIT](./eu-tw-013-student.pdf)
+
+- [Teamwork Agenda - 014 : AWS EC2, CF, Jenkins, Docker, Kubernetes, GIT](./eu-tw-013-student.pdf)
+
+- [Teamwork Agenda - 015 : AWS EC2, CF, Jenkins, Docker, Kubernetes, GIT](./eu-tw-015-student.pdf)

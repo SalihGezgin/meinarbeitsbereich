@@ -678,7 +678,7 @@ terraform fmt
 terraform apply
 ```
 
-- Uncomment variables of `ec2-name` and `ec2-type`. Then make the changes in the `tf-example.tf` file. 
+- Comment variables of `ec2-name` and `ec2-type`. Then make the changes in the `tf-example.tf` file. 
 
 ```bash
 locals {
@@ -926,6 +926,7 @@ terraform {
   }
 }
 ```
+- Go to the `terraform-aws-example` directoy and run the commands below.
 
 ```bash
 terraform init
@@ -947,7 +948,7 @@ terraform destroy
 
 ### Terraform modules
 
--Create folders name `terraform-modules`, `modules`, `dev`, `prod`,`vpc`, `main-vpc` and files as belov. 
+-Create folders name `terraform-modules`, `modules`, `dev`, `prod`,`vpc`, `main-vpc` and files as below. 
 
 ```txt
  terraform-modules
@@ -971,7 +972,7 @@ provider "aws" {
   region = "us-east-1"
 }
 
-resource "aws_vpc" "module-vpc" {
+resource "aws_vpc" "module_vpc" {
   cidr_block = var.vpc_cidr_block
   tags = {
     Name = "terraform-vpc-${var.environment}"
@@ -980,7 +981,7 @@ resource "aws_vpc" "module-vpc" {
 
 resource "aws_subnet" "public_subnet" {
   cidr_block = var.public_subnet_cidr
-  vpc_id = aws_vpc.module-vpc.id
+  vpc_id = aws_vpc.module_vpc.id
   tags = {
     Name = "terraform-public-subnet-${var.environment}"
   }
@@ -988,7 +989,7 @@ resource "aws_subnet" "public_subnet" {
 
 resource "aws_subnet" "private_subnet" {
   cidr_block = var.private_subnet_cidr
-  vpc_id = aws_vpc.module-vpc.id
+  vpc_id = aws_vpc.module_vpc.id
   tags = {
     Name = "terraform-private-subnet-${var.environment}"
   }
@@ -1021,11 +1022,11 @@ variable "private_subnet_cidr" {
 
 ```bash
 output "vpc_id" {
-  value = aws_vpc.module-vpc.id
+  value = aws_vpc.module_vpc.id
 }
 
 output "vpc_cidr" {
-  value = aws_vpc.module-vpc.cidr_block
+  value = aws_vpc.module_vpc.cidr_block
 }
 
 output "public_subnet_cidr" {
@@ -1045,7 +1046,7 @@ module "tf-vpc" {
   environment = "DEV"
   }
 
-output "test" {
+output "vpc-cidr-block" {
   value = module.tf-vpc.vpc_cidr
 }
 
@@ -1058,13 +1059,13 @@ module "tf-vpc" {
   environment = "PROD"
   }
 
-output "test" {
+output "vpc-cidr-block" {
   value = module.tf-vpc.vpc_cidr
 }
 
 ```
 
-- Go to the `dev/vpc` folder and run the command belove.
+- Go to the `dev/vpc` folder and run the command below.
 
 ```bash
 terraform init
@@ -1074,7 +1075,7 @@ terraform apply
 
 - Go to the AWS console and check the VPC and subnets.
 
-- Go to the `prod/vpc` folder and run the command belove.
+- Go to the `prod/vpc` folder and run the command below.
 
 ```bash
 terraform init
@@ -1088,7 +1089,7 @@ terraform apply
 
 The `terraform destroy` command terminates resources defined in your Terraform configuration. This command is the reverse of terraform apply in that it terminates all the resources specified by the configuration. It does not destroy resources running elsewhere that are not described in the current configuration.
 
-- Go to the `prod/vpc` and  `dev/vpc` folders and run the command belove.
+- Go to the `prod/vpc` and  `dev/vpc` folders and run the command below.
 
 ```bash
 terraform destroy
