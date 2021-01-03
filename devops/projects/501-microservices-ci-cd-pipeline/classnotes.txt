@@ -73,3 +73,85 @@ MSP-8:
 
 * docker image prune -a
     |--> removes all images
+
+
+MSP-11:
+------
+* GPG stands for GNU Privacy Gaurd
+
+* wget -O /etc/yum.repos.d/jenkins.repo https://pkg.jenkins.io/redhat/jenkins.repo
+    |--> -O : outputs to the configuration file into yum repo.
+    |--> in this configuration file there is a url. this url is used during gpg (gnu privacy gaurd) checking
+
+* rpm --import https://pkg.jenkins.io/redhat/jenkins.io.key 
+    |--> this command imports the gpg key for jenkins. Then it's checked using the url coming 
+         from the configuration file
+
+* sed -i 's/^ExecStart=.*/ExecStart=\/usr\/bin\/dockerd -H tcp:\/\/127.0.0.1:2375 -H unix:\/\/\/var\/run\/docker.sock/g' /lib/systemd/system/docker.service
+    |--> this line causes the docker service to set the first command to be accomplished while starting up
+    |--> (-H or --host list) means "Daemon socket(s) to connect to"
+
+
+MSP-13:
+------
+* Jacoco code coverage report configuration.
+|--> path to excute files: It is defined where the *.exec files are. In our example, there is just jacoco.exec, so only jacoco.exec will be executed.
+|-->inclusions: It is defined included binary files.
+|-->exclusions: It is defined excluded binary files.
+|-->path to class directories: It is defined where compiled code can be found.
+|-->path to source dirs: It is defined where the corresponding source code is.
+|-->inclusions: It is defined included souce code files. 
+|-->exclusion: It is defined excluded souce code files
+
+resource: https://plugins.jenkins.io/jacoco/
+
+MSP-22:
+------
+* kompose tool :
+    |--> used for generating k8s definition files
+    |--> consumes a simplified and modified docker-compose file to generate k8s definition files
+    |--> use 1, 2 or 3 as the version of docker-compose file
+    |--> kompose convert -f docker-compose.yml -o k8s/base
+        |--> -f : file, -o : output
+        |--> converting command
+* initContainer :
+    |--> used before launching the containers in a pod
+    |--> command: ['sh', '-c', 'until nc -z discovery-server:8761; do echo waiting for discovery-server; sleep 2; done;']
+        |--> command for busybox. waits until the port of a service is reachable
+        
+* ingress definition files :
+    |--> nginx.ingress.kubernetes.io/rewrite-target: /$2
+        |--> this is an ingress annotation for rewriting request url
+        |--> $2 catches the second regular expression "(.*)"
+    |--> path: /api/vet(/|$)(.*)
+        |--> any request with /api/vet/ or /api/vet is directed to the related service
+        |--> but only the part that comes after "/api/vet/" will be captured and the request url will be rewriten 
+             with this part
+
+* kustomize tool : 
+    |--> it s used for customizing the definition files. You can add a field or change a field on the k8s definition files 
+    |--> Patches is a feature of kustomization :
+        |--> Patches feature is used for adding or replacing some fields on the related resource
+        |--> you can use seperate files or inline fields to patch on the definition files
+
+* kubectl kustomize k8s/prod/
+    |--> shows the output of kustomization
+
+
+Resources:
+----------
+* kompose :
+    |--> https://kompose.io/user-guide/#user-guide
+
+* https://nip.io/
+
+* Resource for Regular Expressions :
+    |--> https://regexr.com/
+
+* Kustomize :
+    |--> https://kubernetes.io/docs/tasks/manage-kubernetes-objects/kustomization/
+    |--> feature list :
+        |--> https://kubernetes.io/docs/tasks/manage-kubernetes-objects/kustomization/#kustomize-feature-list
+    |--> patches feature :
+        |--> https://kubectl.docs.kubernetes.io/references/kustomize/patches/
+
