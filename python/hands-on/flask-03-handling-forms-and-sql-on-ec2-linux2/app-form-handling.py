@@ -9,7 +9,7 @@ app = Flask(__name__)
 # send your name as template variable, and assign route of no path ('/')
 @app.route('/')
 def home():
-    return render_template('index.html', name='Callahan')
+    return render_template('index.html', name='Salih')
 
 # Write a function named `greet` which uses template file named `greet.html` given under `templates` folder
 # and assign to the dynamic route of ('/<name>')

@@ -54,7 +54,7 @@ def insert_email(name, email):
     # default text
     response = 'Error occurred..'
     # if user input are None (null) give warning
-    if name == None or email == None:
+    if name == None and email == None:
         response = 'Username or email can not be emtpy!!'
     # if there is no same user name in the db, then insert the new one
     elif not any(result):
@@ -97,5 +97,5 @@ def add_email():
 
 # Add a statement to run the Flask application which can be reached from any host on port 80.
 if __name__ == '__main__':
-    # app.run(debug=True)
-   app.run(host='0.0.0.0', port=80)
+   app.run(debug=True)
+   # app.run(host='0.0.0.0', port=80)

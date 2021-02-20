@@ -1,4 +1,10 @@
 ## Part 1 - Creating DynamoDB Tables
+sudo yum update -y
+sudo yum install mariadb-server -y
+sudo yum install mariadb-server -y
+sudo systemctl start mariadb
+sudo systemctl status mariadb
+sudo systemctl enable mariadb
 
 ### Step 1 : Create Product Catalog Table
 

@@ -3364,7 +3364,7 @@ kubectl create namespace cattle-system
 ```bash
 helm install rancher rancher-latest/rancher \
   --namespace cattle-system \
-  --set hostname=rancher.clarusway.us \
+  --set hostname=rancher.gezginsalih.com \
   --set tls=external \
   --set replicas=1
 ```

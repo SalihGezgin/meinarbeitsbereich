@@ -51,7 +51,7 @@ def admin():
 # and assign to the route of ('/greet-admin')
 @app.route('/greet-admin')
 def greet_admin():
-    return redirect(url_for('greet', name = 'Master Admin!!!!'))
+    return redirect(url_for('greet', name = 'Salih Gezgin!!!!'))
 # Rewrite a function named greet which which uses template file named `greet.html` under `templates` folder 
 # and assign to the dynamic route of ('/<name>')
 @app.route('/<name>')
@@ -70,3 +70,4 @@ def evens():
 # Add a statement to run the Flask application which can be reached from any host on port 80.
 if __name__ == '__main__':
     app.run(debug = True)
+    #  app.run(host='0.0.0.0', port=80)
