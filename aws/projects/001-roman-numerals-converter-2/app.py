@@ -1,5 +1,4 @@
 from flask import Flask, render_template, request
-
 app = Flask(__name__)
 
 def convert(decimal_num):
@@ -14,7 +13,7 @@ def convert(decimal_num):
 #    roman = ['M', 'CM', 'D', 'CD', 'C', 'XC', 'L', 'XL', 'X', 'IX', 'V', 'IV', 'I']
 #    sayi = [1000, 900, 500, 400, 100, 90, 50, 40, 10, 9, 5, 4, 1]
 #    romanvalue = ""
-#    for i,d in enumerate(sayi):
+#    for i,d in enumerate(sayi): 
 #        while (num >= d):
 #            num -= d
 #            romanvalue += roman[i]
@@ -39,8 +38,8 @@ def main_post():
     return render_template('result.html', number_decimal = number , number_roman= convert(number), developer_name='Salih')
 
 if __name__ == '__main__':
-    #app.run(debug=True)
-    app.run(host='0.0.0.0', port=80)
+    app.run(debug=True)
+    #app.run(host='0.0.0.0', port=80)
 
 
 

@@ -76,7 +76,7 @@ wget https://github.com/awsdevopsteam/jenkins-first-project/raw/master/to-do-app
 
 ```bash
 tar -xvf to-do-app-nodejs.tar
-
+# zip li dosyayi acmak icin
 ```
 
 - Check the files an folder. You will see `to-do-app-nodejs.tar`, `to-do-app-nodejs` and `todo-app-node-project`

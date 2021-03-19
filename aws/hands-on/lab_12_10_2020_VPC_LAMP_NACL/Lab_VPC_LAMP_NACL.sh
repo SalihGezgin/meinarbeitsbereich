@@ -14,7 +14,7 @@ VPC LAB_EU-Serdar-12/07/2020
    # Subnet: clarus-az1b-public-subnet
    # Sec Group: Wordpress/BastionHost
    
- #!/bin/bash
+#!/bin/bash
 
 yum update -y
 amazon-linux-extras install -y lamp-mariadb10.2-php7.2 php7.2

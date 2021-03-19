@@ -54,6 +54,7 @@ Resources:
               cd templates
               wget https://raw.githubusercontent.com/SalihGezgin/meinarbeitsbereich/master/aws/projects/002-milliseconds-converter/templates/index.html
               wget https://raw.githubusercontent.com/SalihGezgin/meinarbeitsbereich/master/aws/projects/002-milliseconds-converter/templates/result.html
+              cd ..
               python3 app.py
 
   WebServerTargetGroup:

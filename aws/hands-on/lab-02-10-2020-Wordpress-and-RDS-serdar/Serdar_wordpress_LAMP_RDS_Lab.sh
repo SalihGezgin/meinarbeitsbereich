@@ -78,10 +78,10 @@ SHOW DATABASES;
 CREATE USER admin IDENTIFIED BY 'Clarusway_1';
 
 # 18. Grant permissions to the user "admin" for database "clarusway"
-GRANT ALL ON clarusway.* TO admin IDENTIFIED BY 'Clarusway_1' WITH GRANT OPTION;  
+GRANT ALL ON clarusway.* TO admin IDENTIFIED BY 'Clarusway_1' WITH GRANT OPTION; ## Database üzerindeki admin e tam yetki vermek icin
 
 # 19. Update privileges
-FLUSH PRIVILEGES;
+FLUSH PRIVILEGES; #güncellemek gibi
 
 # 20. List the users defined.
 SELECT Host, User, Password FROM user;
@@ -191,7 +191,7 @@ exit
 
 
 # 34. Connect to the RDS instance to create "clarusway" database with HOST
-mysql -u admin -h [your-own-RDS-endpoint] -p
+mysql -u admin -h clarusway.choladoul677.us-east-1.rds.amazonaws.com -p 
 
 # 35. Show databases and select "mysql"
 SHOW DATABASES;
@@ -218,7 +218,7 @@ yum install -y mysql-community-client
 
 # 39. Create dumb of "clarusway" database via connecting from "Messenger EC2" to the "Database Instance"
 mysqldump -u admin -h [your-own-database-instance-DNS] -p clarusway > clarusway_migration.sql
-
+mysqldump -u admin -h ec2-3-93-172-153.compute-1.amazonaws.com -p clarusway > clarusway_migration.sql
 # 40. Transfer the dumb file to the RDS instance 
 mysql -u admin -h [your-own-RDS-endpoint] -p clarusway < clarusway_migration.sql
 

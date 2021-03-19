@@ -89,7 +89,8 @@ Open the Amazon EFS console at https://console.aws.amazon.com/efs/.
 
 General
 
-Name                    : FirstEFS
+Name                    : 
+
 
 Automatic backups       : Unchecked "Enable automatic backups"
 
