@@ -145,7 +145,7 @@ Resources:
       DBInstanceClass: db.t2.micro #Required
       EngineVersion: 8.0.19
       MasterUsername: admin
-      MasterUserPassword: Salih_1
+      MasterUserPassword: Salih_01
       MultiAZ: false
       Port: 3306
       PubliclyAccessible: true
